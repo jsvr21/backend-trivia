@@ -1521,8 +1521,9 @@ setInterval(() => {
   }
 }, 10 * 60 * 1000); // Cada 10 minutos
 
-// Puerto
-const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
+const HOST = "0.0.0.0" as string;
 
-export { io };
+server.listen(PORT, HOST, () => {
+  console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
+});
